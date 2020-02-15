@@ -82,4 +82,71 @@ diff(7,5);      // 2
 >In this simple example, it doesn't seem to matter whether `tmp` is inside the `if` block or whether it belongs at the function level -- but it certainly shouldn't be a global variable! However, following the POLE principle, `tmp` should be as hidden in scope as possible. So we block scope `tmp` (using `let`) to the `if` block.
 
 5.
+>Closure is actually a live link, a preservation of the full variable itself. We're not limited to merely reading its value; the closed-over variable can be updated (reassigned) as well.
 
+```
+var fns = [];
+
+for (var i = 0; i < 3; i++) {
+    fns[i] = function fn(){
+        // closure over `i`
+        return i;
+    };
+}
+
+fns[0]();   // 3 -- WHY!?
+fns[1]();   // 3
+fns[2]();   // 3
+```
+
+To make it behave as we natually expect, use a new variable in each iteration:
+```
+var fns = [];
+
+for (let i = 0; i < 3; i++) {
+    // new variable `j` created each iteration,
+    // which gets a copy of the value of `i` at
+    // this moment.
+    let j = i;
+    fns[i] = function fn(){
+        // closure over `j` not `i`
+        return j;
+    };
+}
+
+fns[0]();   // 0
+fns[1]();   // 1
+fns[2]();   // 2
+```
+Or, use an IIFE which takes in the current `i` as the argument. This is similar to the above approach.
+```
+var fns = [];
+
+for (var i = 0; i < 3; i++) {
+    fns[i] = (function fn(idx){
+        function innerFn() {          
+          return idx;
+        }
+        return innerFn;
+    })(i);
+}
+```
+Or, change `var` to `let` in `for` loop:
+```
+var fns = [];
+
+for (let i = 0; i < 3; i++) {
+    // the `let i` gives us a new `i`
+    // for each iteration automatically!    
+    fns[i] = function fn(){
+        return i;
+    };
+}
+
+fns[0]();   // 0
+fns[1]();   // 1
+fns[2]();   // 2
+```
+>If you use `let` (or `const`) in a `for`-loop header, not only does JS block-scope the declaration to the loop, but actually to **each iteration of the loop**. In other words, 3 `i`s are created, one for each loop, so the closure *just works* as expected.
+
+6.
