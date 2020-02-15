@@ -19,11 +19,11 @@ function range(start,end) {
   function getRange(start,end) {
       var ret = [];
       
-      for (let i = start; i <= end; i++) {
-          ret.push(i);
-      }
+      // for (let i = start; i <= end; i++) {
+      //     ret.push(i);
+      // }
       
-     /*
+     
       while (true) {
         if (start > end) {
           break;
@@ -31,7 +31,7 @@ function range(start,end) {
         ret.push(start);
         start++;
       }
-      */
+      
       console.log(ret);
       return ret;
   }
