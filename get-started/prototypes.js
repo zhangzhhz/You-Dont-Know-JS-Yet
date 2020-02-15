@@ -44,7 +44,12 @@ var slotMachine = {
   display() {
       // TODO
       this.reels.forEach(function displayReel(reel) {
-        console.log(reel.display());
+        let prev = reel.position - 1;
+        if (prev === -1) {
+            prev = reel.symbols.length - 1;
+        }
+        let next = (reel.position + 1) % reel.symbols.length;
+        console.log(`${reel.symbols[prev]} | ${reel.display()} | ${reel.symbols[next]}`);
       });
   }
 };
