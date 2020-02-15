@@ -99,7 +99,7 @@ fns[1]();   // 3
 fns[2]();   // 3
 ```
 
-To make it behave as we natually expect, use a new variable in each iteration:
+To make it behave as we naturally expect, use a new variable in each iteration:
 ```
 var fns = [];
 
