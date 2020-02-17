@@ -63,3 +63,37 @@ Object.getPrototypeOf( a ) === Foo.prototype; // true
 ```
 a.__proto__ === Foo.prototype; // true
 ```
+
+### `instanceof` and `prototype`
+
+```
+> o1 = {a:1, b:2}
+{ a: 1, b: 2 }
+> o2 = Object.create(o1)
+{}
+> o2.__proto__ === o1
+true
+> Object.getPrototypeOf(o2) === o1
+true
+> 
+> o2 instanceof o1
+Uncaught TypeError: Right-hand side of 'instanceof' is not callable
+> 
+> function o0() {
+... }
+undefined
+> o0.prototype = o1
+{ a: 1, b: 2 }
+> o2 instanceof o0
+true
+> 
+> Object.getPrototypeOf(o2) === o0.prototype
+true
+> o2.__proto__ === o0.prototype
+true
+> 
+> o1.isPrototypeOf(o2)
+true
+> o0.prototype.isPrototypeOf(o2)
+true
+```
