@@ -1,4 +1,6 @@
-### Determining `this`
+### `this`
+
+#### Determining `this`
 
 Now, we can summarize the rules for determining `this` from a function call's call-site, in their order of precedence. Ask these questions in this order, and stop when the first rule applies.
 
@@ -20,7 +22,7 @@ Now, we can summarize the rules for determining `this` from a function call's ca
 
 That's it. That's all it takes to understand the rules of `this` binding for normal function calls. Well... almost.
 
-### Review (TL;DR)
+#### Review (TL;DR)
 
 Determining the `this` binding for an executing function requires finding the direct call-site of that function. Once examined, four rules can be applied to the call-site, in *this* order of precedence:
 
