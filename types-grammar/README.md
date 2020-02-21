@@ -20,6 +20,8 @@ When we make the assignment `b = [4,5,6]`, we are doing absolutely nothing to af
 
 To coerce between `string`s and `number`s, we use the built-in `String(..)` and `Number(..)` functions (which we referred to as "native constructors" in Chapter 3), but **very importantly**, we do not use the `new` keyword in front of them. As such, we're not creating object wrappers.
 
+**Note**: The same could be done for other native functions, for example `Boolean`.
+
 Instead, we're actually *explicitly coercing* between the two types:
 ```
 var a = 42;
