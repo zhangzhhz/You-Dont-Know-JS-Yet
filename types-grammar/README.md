@@ -47,3 +47,4 @@ b; // "42"
 d; // 3.14
 ```
 
+For coercion to boolean value, `Boolean(a)` and `!!a` are far better as *explicit* coercion options.
